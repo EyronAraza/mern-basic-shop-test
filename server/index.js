@@ -25,6 +25,10 @@ app.use(cookieParser())
 // mongoose.connect("mongodb://localhost:27017/Login")
 mongoose.connect("mongodb+srv://eyron:test123@myapp.esfp7tg.mongodb.net/?retryWrites=true&w=majority&appName=myapp")
 
+app.get('/', (req, res) => {
+    res.json("Hello World")
+})
+
 // Handle POST requests for login page
 app.post('/login', (req, res) => {
     const { email, password } = req.body
