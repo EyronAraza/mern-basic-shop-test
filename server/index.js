@@ -20,7 +20,7 @@ const cartModel = require('./models/cart-list')
 const app = express()
 app.use(express.json()) // To parse JSON request bodies, to use "req.body" allowing you to access this data sent via form.
 app.use(cors({
-    origin: ["mern-basic-shop-test-client.vercel.app"],
+    origin: ["https://mern-basic-shop-test-client.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }
