@@ -50,10 +50,21 @@ app.post('/login', (req, res) => {
                     if (response) {
                         // Create web token (do not share secret key!)
                         const token = jwt.sign({ email: user.email }, JWT_SECRET_KEY, { expiresIn: "1d" })
-                        res.cookie("token", token, { domain: client_url }) // store token into cookie
+                        res.cookie("token", token, {
+                            domain: client_url,
+                            httpOnly: true, // Prevent client-side JS from accessing the cookie
+                            secure: true, // Use HTTPS for transmission
+                            sameSite: 'strict', // Prevent CSRF attacks 
+                        }) // store token into cookie
 
                         // Set the username in a cookie
-                        res.cookie('username', user.name, { domain: client_url });
+                        res.cookie('username', user.name, {
+                            domain: client_url,
+                            httpOnly: true, // Prevent client-side JS from accessing the cookie
+                            secure: true, // Use HTTPS for transmission
+                            sameSite: 'strict', // Prevent CSRF attacks 
+
+                        });
 
                         res.json("Success")
                     } else {
