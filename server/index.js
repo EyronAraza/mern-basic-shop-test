@@ -25,6 +25,7 @@ app.use(cors({
     origin: [client_url],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    exposedHeaders: ["Set-Cookie"]
 }
 )) // cors is to allow cross origin (allows your server to accept requests from different origins)
 app.use(cookieParser())
