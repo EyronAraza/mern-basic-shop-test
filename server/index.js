@@ -52,6 +52,7 @@ app.post('/login', (req, res) => {
                         const token = jwt.sign({ email: user.email }, JWT_SECRET_KEY, { expiresIn: "1d" })
                         res.cookie("token", token, {
                             httpOnly: true,
+                            secure: true,
                             path: "/",
                             sameSite: 'none',
                             maxAge: 30 * 24 * 60 * 60 * 1000, // 30days
@@ -60,6 +61,7 @@ app.post('/login', (req, res) => {
                         // Set the username in a cookie
                         res.cookie('username', user.name, {
                             httpOnly: true,
+                            secure: true,
                             path: "/",
                             sameSite: 'none',
                             maxAge: 30 * 24 * 60 * 60 * 1000, // 30days
