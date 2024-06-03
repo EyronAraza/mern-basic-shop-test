@@ -25,7 +25,7 @@ app.use(cors({
     origin: [client_url],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
-    exposedHeaders: ["Set-Cookie"]
+    exposedHeaders: ["set-cookie"]
 }
 )) // cors is to allow cross origin (allows your server to accept requests from different origins)
 app.use(cookieParser())
@@ -52,7 +52,6 @@ app.post('/login', (req, res) => {
                         // Create web token (do not share secret key!)
                         const token = jwt.sign({ email: user.email }, JWT_SECRET_KEY, { expiresIn: "1d" })
                         res.cookie("token", token, {
-                            httpOnly: false,
                             secure: true,
                             path: '/',
                             sameSite: 'none',
@@ -60,7 +59,6 @@ app.post('/login', (req, res) => {
 
                         // Set the username in a cookie
                         res.cookie('username', user.name, {
-                            httpOnly: false,
                             secure: true,
                             path: '/',
                             sameSite: 'none',
