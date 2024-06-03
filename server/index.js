@@ -1,10 +1,16 @@
 // Import modules
+require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken")
 const cookieParser = require('cookie-parser')
+
+// ENV variables
+const MONGO_URI = process.env.MONGO_URI;
+const PORT = process.env.PORT;
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 // Import DB Models
 const employeeModel = require('./models/employee')
@@ -23,7 +29,7 @@ app.use(cookieParser())
 
 // Connect to mongo database
 // mongoose.connect("mongodb://localhost:27017/Login")
-mongoose.connect("mongodb+srv://eyron:test123@myapp.esfp7tg.mongodb.net/?retryWrites=true&w=majority&appName=myapp")
+mongoose.connect(MONGO_URI)
 
 app.get('/', (req, res) => {
     res.json("Hello World")
@@ -41,7 +47,7 @@ app.post('/login', (req, res) => {
                     // check if password is correct
                     if (response) {
                         // Create web token (do not share secret key!)
-                        const token = jwt.sign({ email: user.email }, "jwt-secret-key", { expiresIn: "1d" })
+                        const token = jwt.sign({ email: user.email }, JWT_SECRET_KEY, { expiresIn: "1d" })
                         res.cookie("token", token) // store token into cookie
 
                         // Set the username in a cookie
@@ -87,7 +93,7 @@ const verifyUser = (req, res, next) => {
     if (!token) {
         return res.json("Token not available. User not logged in, sending you back to home page.")
     } else {
-        jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+        jwt.verify(token, JWT_SECRET_KEY, (err, decoded) => {
             if (err) return res.json("Token is wrong.")
             next()
         })
@@ -157,7 +163,6 @@ app.delete('/cart/:username/:itemName', async (req, res) => {
 });
 
 // Run port aka running the website's server
-const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}`);
 })
