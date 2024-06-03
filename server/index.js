@@ -54,7 +54,7 @@ app.post('/login', (req, res) => {
                             domain: client_url,
                             httpOnly: true, // Prevent client-side JS from accessing the cookie
                             secure: true, // Use HTTPS for transmission
-                            sameSite: 'None', // Prevent CSRF attacks 
+                            sameSite: 'none', // Prevent CSRF attacks 
                         }) // store token into cookie
 
                         // Set the username in a cookie
@@ -62,7 +62,7 @@ app.post('/login', (req, res) => {
                             domain: client_url,
                             httpOnly: true, // Prevent client-side JS from accessing the cookie
                             secure: true, // Use HTTPS for transmission
-                            sameSite: 'None', // Prevent CSRF attacks 
+                            sameSite: 'none', // Prevent CSRF attacks 
 
                         });
 
