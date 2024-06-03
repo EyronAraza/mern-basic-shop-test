@@ -157,7 +157,7 @@ app.delete('/cart/:username/:itemName', async (req, res) => {
 });
 
 // Run port aka running the website's server
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}`);
 })
