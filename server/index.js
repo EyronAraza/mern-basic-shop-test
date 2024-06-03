@@ -16,11 +16,13 @@ const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 const employeeModel = require('./models/employee')
 const cartModel = require('./models/cart-list')
 
+const client_url = "https://mern-basic-shop-test-client.vercel.app"
+
 // Create express app
 const app = express()
 app.use(express.json()) // To parse JSON request bodies, to use "req.body" allowing you to access this data sent via form.
 app.use(cors({
-    origin: ["https://mern-basic-shop-test-client.vercel.app"],
+    origin: [client_url],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }
@@ -48,10 +50,10 @@ app.post('/login', (req, res) => {
                     if (response) {
                         // Create web token (do not share secret key!)
                         const token = jwt.sign({ email: user.email }, JWT_SECRET_KEY, { expiresIn: "1d" })
-                        res.cookie("token", token) // store token into cookie
+                        res.cookie("token", token, { domain: client_url }) // store token into cookie
 
                         // Set the username in a cookie
-                        res.cookie('username', user.name);
+                        res.cookie('username', user.name, { domain: client_url });
 
                         res.json("Success")
                     } else {
