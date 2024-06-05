@@ -50,21 +50,21 @@ app.post('/login', (req, res) => {
                 bcrypt.compare(password, user.password, (err, response) => {
                     // check if password is correct
                     if (response) {
-                        // Create web token (do not share secret key!)
+                        // Create web token 
                         const token = jwt.sign({ email: user.email }, JWT_SECRET_KEY, { expiresIn: "1d" })
-                        res.cookie("token", token, {
+                        res.cookie("token", token, { // store token into cookie
                             secure: true,
                             path: '/',
                             sameSite: 'none',
-                            domain: client_url
-                        }) // store token into cookie
+                            domain: '.vercel.app'
+                        })
 
-                        // Set the username in a cookie
+                        // Store the username in a cookie
                         res.cookie('username', user.name, {
                             secure: true,
                             path: '/',
                             sameSite: 'none',
-                            domain: client_url
+                            domain: '.vercel.app'
                         });
 
                         res.json("Success")
