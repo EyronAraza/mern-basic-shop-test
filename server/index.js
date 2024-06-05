@@ -25,7 +25,7 @@ app.use(cors({
     origin: [client_url],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
-    exposedHeaders: ["set-cookie"]
+    exposedHeaders: ["Set-Cookie"]
 }
 )) // cors is to allow cross origin (allows your server to accept requests from different origins)
 app.use(cookieParser())
@@ -34,8 +34,9 @@ app.use(cookieParser())
 // mongoose.connect("mongodb://localhost:27017/Login")
 mongoose.connect(MONGO_URI)
 
+// Server response test
 app.get('/', (req, res) => {
-    res.json("Hello World")
+    res.json("Connected to Express. Hello World!")
 })
 
 // Handle POST requests for login page
