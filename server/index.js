@@ -56,7 +56,7 @@ app.post('/login', (req, res) => {
                             secure: true,
                             path: '/',
                             sameSite: 'none',
-                            domain: 'vercel.app'
+                            domain: '.vercel.app'
                         })
 
                         // Store the username in a cookie
@@ -64,7 +64,7 @@ app.post('/login', (req, res) => {
                             secure: true,
                             path: '/',
                             sameSite: 'none',
-                            domain: 'vercel.app'
+                            domain: '.vercel.app'
                         });
 
                         res.json("Success")
