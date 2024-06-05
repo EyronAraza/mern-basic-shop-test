@@ -53,20 +53,18 @@ app.post('/login', (req, res) => {
                         // Create web token 
                         const token = jwt.sign({ email: user.email }, JWT_SECRET_KEY, { expiresIn: "1d" })
                         res.cookie("token", token, { // store token into cookie
-                            secure: true,
+                            secure: process.env.NODE_ENV === 'production', // secure only in production
                             path: '/',
                             sameSite: 'none',
-                            maxAge: 1000 * 60 * 60 * 24,
-                            domain: '.domain.com'
+                            maxAge: 1000 * 60 * 60 * 24, // 1 day
                         })
 
                         // Store the username in a cookie
                         res.cookie('username', user.name, {
-                            secure: true,
+                            secure: process.env.NODE_ENV === 'production', // secure only in production
                             path: '/',
                             sameSite: 'none',
-                            maxAge: 1000 * 60 * 60 * 24,
-                            domain: '.domain.com'
+                            maxAge: 1000 * 60 * 60 * 24, // 1 day
                         });
 
                         res.json("Success")
