@@ -57,7 +57,6 @@ app.post('/login', (req, res) => {
                             path: '/',
                             sameSite: 'none',
                             maxAge: 1000 * 60 * 60 * 24,
-                            domain: '.vercel.app'
                         })
 
                         // Store the username in a cookie
@@ -66,7 +65,6 @@ app.post('/login', (req, res) => {
                             path: '/',
                             sameSite: 'none',
                             maxAge: 1000 * 60 * 60 * 24,
-                            domain: '.vercel.app'
                         });
 
                         res.json("Success")
