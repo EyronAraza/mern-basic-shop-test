@@ -55,7 +55,7 @@ app.post('/login', (req, res) => {
                         res.cookie("token", token, { // store token into cookie
                             secure: process.env.NODE_ENV === 'production', // secure only in production
                             path: '/',
-                            sameSite: 'none',
+                            sameSite: 'None',
                             maxAge: 1000 * 60 * 60 * 24, // 1 day
                         })
 
@@ -63,7 +63,7 @@ app.post('/login', (req, res) => {
                         res.cookie('username', user.name, {
                             secure: process.env.NODE_ENV === 'production', // secure only in production
                             path: '/',
-                            sameSite: 'none',
+                            sameSite: 'None',
                             maxAge: 1000 * 60 * 60 * 24, // 1 day
                         });
 
