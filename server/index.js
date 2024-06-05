@@ -56,6 +56,7 @@ app.post('/login', (req, res) => {
                             secure: true,
                             path: '/',
                             sameSite: 'none',
+                            domain: client_url
                         }) // store token into cookie
 
                         // Set the username in a cookie
@@ -63,6 +64,7 @@ app.post('/login', (req, res) => {
                             secure: true,
                             path: '/',
                             sameSite: 'none',
+                            domain: client_url
                         });
 
                         res.json("Success")
