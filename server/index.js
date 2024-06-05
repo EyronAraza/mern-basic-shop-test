@@ -57,6 +57,7 @@ app.post('/login', (req, res) => {
                             path: '/',
                             sameSite: 'None',
                             maxAge: 1000 * 60 * 60 * 24, // 1 day
+                            partitioned: true
                         })
 
                         // Store the username in a cookie
@@ -65,6 +66,7 @@ app.post('/login', (req, res) => {
                             path: '/',
                             sameSite: 'None',
                             maxAge: 1000 * 60 * 60 * 24, // 1 day
+                            partitioned: true
                         });
 
                         res.json("Success")
