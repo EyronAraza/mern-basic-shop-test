@@ -56,6 +56,7 @@ app.post('/login', (req, res) => {
                             secure: true,
                             path: '/',
                             sameSite: 'none',
+                            maxAge: 1000 * 60 * 60 * 24,
                             domain: '.vercel.app'
                         })
 
@@ -64,6 +65,7 @@ app.post('/login', (req, res) => {
                             secure: true,
                             path: '/',
                             sameSite: 'none',
+                            maxAge: 1000 * 60 * 60 * 24,
                             domain: '.vercel.app'
                         });
 
